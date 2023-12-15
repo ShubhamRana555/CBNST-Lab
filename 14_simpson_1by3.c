@@ -1,38 +1,41 @@
-//C Program to Implement Simpson's 1/3 Rule
-
 #include<stdio.h>
+#include<conio.h>
+#include<math.h>
 
-float findValueAt(float x)
-{
-    return 1/(1+x*x);
-}
+/* Define function here */
+#define f(x) 1/(1+x*x)
+
 int main()
 {
-    int n;
-    float i,a,b,sum=0,h;
-    //The initial Position (0) is treated as Even position
-    int position_of_term=1;
-    //Input
-    printf("Enter Value of a and b\n");
-    scanf("%f%f",&a,&b);
-    printf("Enter no. of Intervals\n");
-    scanf("%d",&n);
+ float lower, upper, integration=0.0, stepSize, k;
+ int i, subInterval;
+ /* Input */
+ printf("Enter lower limit of integration: ");
+ scanf("%f", &lower);
+ printf("Enter upper limit of integration: ");
+ scanf("%f", &upper);
+ printf("Enter number of sub intervals: ");
+ scanf("%d", &subInterval);
 
-    //....................Computations .....................
+ /* Calculation */
+ /* Finding step size */
+ stepSize = (upper - lower)/subInterval;
 
-    h=(b-a)/n;
-    sum = findValueAt(a) +findValueAt(b);
- 
-    for(i=a+h;i<b;i=i+h)
-    {
-       if(position_of_term %2 ==0)
-         sum = sum + 2*findValueAt(i);
-       else
-         sum = sum + 4*findValueAt(i); 
-       position_of_term++;   
-    }
-    sum = (h * sum)/3;
-    //Print the Output
-    printf("\nValue of The integral  = %f",sum);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-    
+ /* Finding Integration Value */
+ integration = f(lower) + f(upper);
+ for(i=1; i<= subInterval-1; i++)
+ {
+  k = lower + i*stepSize;
+  if(i%2==0)
+  {
+   integration = integration + 2 * f(k);
+  }
+  else
+  {
+   integration = integration + 4 * f(k);
+  }
+ }
+ integration = integration * stepSize/3;
+ printf("\nRequired value of integration is: %.3f", integration);
+ return 0;
 }
