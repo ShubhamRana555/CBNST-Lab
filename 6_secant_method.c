@@ -1,3 +1,4 @@
+// secant method
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h>
@@ -10,7 +11,7 @@ int main()
     float x0, x1,x2,f0,f1,f2,alErr;
     int itr=1;
     printf("Enter the value of x0 and x1:\n");
-    scanf("%f%f",&x0,&x1);
+    scanf("%f %f",&x0,&x1);
     printf("Enter allowed error:");
     scanf("%f",&alErr);
     do{
